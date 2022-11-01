@@ -3,7 +3,7 @@ package org.soulcodeacademy.helpr.domain;
 import javax.persistence.*; // JPA = JAVA PERSISTENCE API
 
 // Transformar a classe em uma entidade/tabela no banco
-@Entity
+@Entity                         // ESSES @... SÃO ANOTAÇÕES
 public class Cargo { // nome da tabela = cargo
     @Id // PRIMARY KEY
     @GeneratedValue(strategy = GenerationType.IDENTITY) // AUTO_INCREMENT

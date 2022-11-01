@@ -13,3 +13,9 @@ public interface CargoRepository extends CrudRepository<Cargo, Integer> { // <En
 // Indicar qual a entidade vai ser gerenciada pelo repository e qual o tipo da PK.
 // Obs: O Spring gera uma classe dinâmica com base em nossa interface CargoRepository
 // CrudRepository = contém as operações básicas de um banco de dados
+
+//Cargo
+
+//CargoRepository
+
+//Cargo Service ...         TEM QUE CONTER ESSES 3
