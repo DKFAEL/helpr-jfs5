@@ -32,6 +32,12 @@ public List<Cargo> listar(){
         }
     }
     //SALVAR
+    public Cargo salvar (Cargo novoCargo){
+     novoCargo.setIdCargo(null); // Limpar o campo id para não substituir
+        // INSERT INTO cargo
+        Cargo cargoSalvo = this.cargoRepository.save(novoCargo);
+        return cargoSalvo;
+    }
     //ATUALIZAR
     //DELETAR
 }
