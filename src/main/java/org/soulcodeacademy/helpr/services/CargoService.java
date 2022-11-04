@@ -39,6 +39,22 @@ public List<Cargo> listar(){
         return cargoSalvo;
     }
     //ATUALIZAR
+    public Cargo atualizar(Integer idCargo, Cargo novoCargo){
+    // verificar se o cargo existe mesmo
+        Cargo cargoAtual = this.getCargo(idCargo);
+
+        cargoAtual.setNome(novoCargo.getNome());
+        cargoAtual.setDescricao(novoCargo.getDescricao());
+        cargoAtual.setSalario(novoCargo.getSalario());
+
+      Cargo atualizado =  this.cargoRepository.save(cargoAtual);
+      return atualizado;
+    }
     //DELETAR
+    public void deletar (Integer idCargo){
+    //DELETE FROM cargo WEHRE idCargo
+        Cargo cargo = this.getCargo(idCargo);
+        this.cargoRepository.delete(cargo);
+    }
 }
 
