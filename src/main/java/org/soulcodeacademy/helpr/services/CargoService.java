@@ -1,6 +1,7 @@
 package org.soulcodeacademy.helpr.services;
 
 import org.soulcodeacademy.helpr.domain.Cargo;
+import org.soulcodeacademy.helpr.domain.dto.CargoDTO;
 import org.soulcodeacademy.helpr.repositories.CargoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,20 +33,22 @@ public List<Cargo> listar(){
         }
     }
     //SALVAR
-    public Cargo salvar (Cargo novoCargo){
-     novoCargo.setIdCargo(null); // Limpar o campo id para não substituir
+    public Cargo salvar (CargoDTO   dto){
+
         // INSERT INTO cargo
-        Cargo cargoSalvo = this.cargoRepository.save(novoCargo);
+        //Criando uma entidade nova a partir do DTO
+        Cargo cargo = new Cargo(null, dto.getNome(), dto.getDescricao(), dto.getSalario());
+        Cargo cargoSalvo = this.cargoRepository.save(cargo);
         return cargoSalvo;
     }
     //ATUALIZAR
-    public Cargo atualizar(Integer idCargo, Cargo novoCargo){
+    public Cargo atualizar(Integer idCargo, CargoDTO dto){
     // verificar se o cargo existe mesmo
         Cargo cargoAtual = this.getCargo(idCargo);
 
-        cargoAtual.setNome(novoCargo.getNome());
-        cargoAtual.setDescricao(novoCargo.getDescricao());
-        cargoAtual.setSalario(novoCargo.getSalario());
+        cargoAtual.setNome(dto.getNome());
+        cargoAtual.setDescricao(dto.getDescricao());
+        cargoAtual.setSalario(dto.getSalario());
 
       Cargo atualizado =  this.cargoRepository.save(cargoAtual);
       return atualizado;
