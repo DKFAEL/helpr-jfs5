@@ -35,7 +35,7 @@ public class CargoController {
 
     @GetMapping("/cargos/{idCargo}")
     public Cargo getCargo(@PathVariable Integer idCargo){
-        //@PathVariable -> extrai do endpoint o valor diinâmico
+        //@PathVariable -> extrai do endpoint o valor dinâmico
         return this.cargoService.getCargo(idCargo);
     }
 
