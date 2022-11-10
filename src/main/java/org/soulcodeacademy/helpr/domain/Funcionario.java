@@ -8,7 +8,7 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class Funcionario extends Usuario{
-    //Gera uma coluna dtype para indicar qual asubclasse (Funcionarioou Cliente)
+    //Gera uma coluna dtype para indicar qual a subclasse (Funcionario ou Usuario)
 
     //Coluna foto não é obrigatório
     private  String foto;
