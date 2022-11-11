@@ -9,7 +9,9 @@ public class ClienteDTO  extends  UsuarioDTO{
     private String telefone;
 
 
-    public String getTelefone() {
+    public String getTelefone() {           //Quando usar entidade e dto?
+                                            //Entidade = retorno de dados
+                                            //DTO      = Entrada de dados
         return telefone;
     }
 

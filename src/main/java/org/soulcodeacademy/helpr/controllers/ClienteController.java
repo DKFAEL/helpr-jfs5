@@ -37,6 +37,9 @@ public class ClienteController {
         return atualizado;
     }
 
+    //Deserializar => JSON -> Classe
+    //Serializar   =>
+
     @DeleteMapping("/clientes/{idCliente}")
     public  void deletar (@PathVariable Integer idCliente){
         this.clienteService.deletar(idCliente);
