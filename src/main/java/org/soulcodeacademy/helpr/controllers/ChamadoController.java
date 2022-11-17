@@ -2,6 +2,7 @@ package org.soulcodeacademy.helpr.controllers;
 
 import org.soulcodeacademy.helpr.domain.Chamado;
 import org.soulcodeacademy.helpr.domain.dto.ChamadoDTO;
+import org.soulcodeacademy.helpr.domain.enums.StatusChamado;
 import org.soulcodeacademy.helpr.services.ChamadoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -32,7 +33,34 @@ public class ChamadoController {
 
 @PutMapping("/chamados/{idChamado}")
     public  Chamado atualizar(@PathVariable Integer idChamado,@Valid @RequestBody ChamadoDTO dto) {
-        Chamado atualizado = this.chamadoService.atualizar(idChamado,dto);
-        return  atualizado;
+        return this.chamadoService.atualizar(idChamado,dto);
+
     }
+
+    // Listar por cliente
+
+    @GetMapping("/chamados/clientes/{idCliente}")
+    public List<Chamado> listarPorCliente(@PathVariable Integer idCliente){
+        return this.chamadoService.listarPorCliente(idCliente);
+    }
+
+    // Listar por Funcionario
+
+    @GetMapping("chamados/funcionarios/{idFuncionario}")
+    public  List<Chamado> listarPorFuncionario(@PathVariable Integer idFuncionario) {
+        return  this.chamadoService.listarPorFuncionario(idFuncionario);
+    }
+
+    //Calculadora
+    @GetMapping("/soma")
+    public  Integer soma(@RequestParam Integer numero1, @RequestParam Integer numero2) {
+    return numero1 + numero2;
+    }
+
+    // Listar por status
+    @GetMapping("/chamados/status") // chamados/status?status=ATRIBUIDO
+    public  List<Chamado> listarPorStatus(@RequestParam StatusChamado status) {
+        return this.chamadoService.listarPorStatus(status); // <- NÃO TEM HAVER COM O STATUS DA LINHA 61
+    }
+    // Listar por data (intervalo)
 }
