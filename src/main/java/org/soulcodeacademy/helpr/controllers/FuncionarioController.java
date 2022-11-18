@@ -27,10 +27,17 @@ public class FuncionarioController {
         return this.funcionarioService.getFuncionario(idFuncionario);
     }
 
+
     @PostMapping("/funcionarios")
     public Funcionario salvar (@Valid @RequestBody FuncionarioDTO dto) {
     Funcionario funcionario = this.funcionarioService.salvar(dto);
     return funcionario;
+    }
+
+    //@RequestParam = Captura os valores de parâmetro após ?, ex: /funcionarios/salario?valor=1000&valor2=2000
+    @GetMapping("/funcionarios/salario")
+    public List<Funcionario> listarPorFaixaSalarial(@RequestParam Double valor1, @RequestParam Double valor2){
+        return this.funcionarioService.listarporFaixaSalarial(valor1, valor2);
     }
 
     @PutMapping("/funcionarios/{idFuncionario}")
