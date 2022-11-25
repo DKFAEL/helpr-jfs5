@@ -3,6 +3,7 @@ package org.soulcodeacademy.helpr.services;
 import org.soulcodeacademy.helpr.domain.Cargo;
 import org.soulcodeacademy.helpr.domain.dto.CargoDTO;
 import org.soulcodeacademy.helpr.repositories.CargoRepository;
+import org.soulcodeacademy.helpr.services.erros.RecursoNaoEncontradoError;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +28,7 @@ public List<Cargo> listar(){
 
         if (cargo.isEmpty()){  // Não encontrou o cargo?
             //Não encontrou o cargo com id solicitado
-            throw new RuntimeException("O cargo não foi encontrado!");
+            throw new RecursoNaoEncontradoError("O cargo não foi encontrado!");
         } else {
             return  cargo.get(); // Extrair o cargo de dentro do optional
         }
