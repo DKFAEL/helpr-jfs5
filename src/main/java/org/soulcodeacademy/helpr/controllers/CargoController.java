@@ -4,6 +4,7 @@ import org.soulcodeacademy.helpr.domain.Cargo;
 import org.soulcodeacademy.helpr.domain.dto.CargoDTO;
 import org.soulcodeacademy.helpr.services.CargoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,13 +27,13 @@ public class CargoController {
 
     @Autowired
     private CargoService cargoService;
-
+@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_FUNCIONARIO')")
     @GetMapping("/cargos")
     public List<Cargo> listar(){
         // Requisição -> Controller -> Service -> Repository -> SELECT * FROM cargp;d
         return this.cargoService.listar() ;
     }
-
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_FUNCIONARIO')")
     @GetMapping("/cargos/{idCargo}")
     public Cargo getCargo(@PathVariable Integer idCargo){
         //@PathVariable -> extrai do endpoint o valor dinâmico
@@ -40,19 +41,20 @@ public class CargoController {
     }
 
     //Podemos usar o mesmo endpoint para verbos diferentes
+    @PreAuthorize("Hasrole('ROLE_ADMIN')")
     @PostMapping("/cargos") // REQUISIÇÃO TIPO POST PARA/CARGOS
     public Cargo salvar(@Valid @RequestBody CargoDTO cargo) {
         // @RequestBody -extrair o  JSON do corpo e converter para Cargo (deserializar)
         Cargo salvo = this.cargoService.salvar(cargo);
         return salvo; // a resposta será o cargo inserido
     }
-
+    @PreAuthorize("Hasrole('ROLE_ADMIN')")
     @PutMapping("/cargos/{idCargo}")
     public Cargo atualizar (@PathVariable Integer idCargo,@Valid @RequestBody CargoDTO cargo) {
         Cargo atualizado = this.cargoService.atualizar(idCargo, cargo);
         return atualizado;
     }
-
+    @PreAuthorize("Hasrole('ROLE_ADMIN')")
     @DeleteMapping("/cargos/{idCargo}") // verbo DELETE no /cargo/1
     public void deletar (@PathVariable Integer idCargo) {
     this.cargoService.deletar(idCargo);
